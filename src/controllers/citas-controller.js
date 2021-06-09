@@ -45,6 +45,11 @@ citasCtrl.getHistorialPorcliente = async ( req, res ) => {
     res.json(citas)
 } 
 
+citasCtrl.getVentas = async ( req, res ) => {
+    const citas = await Citas.find( { historial : true })
+    res.json(citas)
+}
+
 
 
 citasCtrl.updateCita = async ( req, res ) => {

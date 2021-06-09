@@ -8,6 +8,7 @@ const {
         getHistorialPorcliente,
         updateCita,
         deleteCita,
+        getVentas
     } = require('../controllers/citas-controller')
   
 const {disponibilidadDeCita, createPorHora, createPorMediaHora} = require('../controllers/citas-create')
@@ -18,7 +19,9 @@ router.route('/disponibilidad').post(disponibilidadDeCita)
 router.route('/history/:id').get(getHistorialPorcliente)
 
 router.route('/all-citas').get(getAllCitas)
-    
+
+router.route('/histo').get(getVentas)
+
 router.route('/:id')
   .get(getOneCita)
   .put(updateCita)
@@ -33,7 +36,7 @@ router.route('/media').post(createPorMediaHora)
 router.route('/cliente/hora').post(createPorHoraCliente)
 
 router.route('/cliente/media').post(createPorMediaHoraCliente)
-  
+
 module.exports = router
 
  

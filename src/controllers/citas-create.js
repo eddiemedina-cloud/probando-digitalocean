@@ -3,6 +3,7 @@ const citasCtrl = {}
 const Citas = require('../models/Citas')
 const webpush = require('../webpush')
 const Notificaciones = require('../models/Notificaciones')
+const Servicio = require('../models/Servicios')
 
 citasCtrl.disponibilidadDeCita = async ( req, res ) => {
     const horas =[]
@@ -102,15 +103,21 @@ citasCtrl.createPorHora = async (req, res) => {
     if(duracion === 30){
         const cita = await Citas.findOne({fecha: date, hora: `${req.body.hora}:00`, estilista: req.body.estilista})
         if(!cita){
+            const servicio = await Servicio.findOne({ _id : req.body.servicio})
             const newCita = new Citas({ 
                 fecha: date,
                 hora: `${req.body.hora}:00`, 
-                estilista: req.body.estilista, 
+                estilista: req.body.estilista,
                 cliente: req.body.cliente,
                 telefono: req.body.telefono,
-                servicio: req.body.servicio,
+                servicio: servicio.servicio,
+                idservicio: servicio._id,
+                precio: servicio.precio,
+                duracion: servicio.rango,
+                historial: true,
                 rowspan: 1,
-                confirmacion: false
+                confirmacion: false,
+                
             })
             await newCita.save()
             const subs = await Notificaciones.findOne({ administrador : req.body.estilista })
@@ -133,13 +140,18 @@ citasCtrl.createPorHora = async (req, res) => {
         if(!cita){
             const citaB = await Citas.findOne({fecha: date, hora: `${req.body.hora}:30`, estilista: req.body.estilista})
             if(!citaB){
+                const servicio = await Servicio.findOne({ _id : req.body.servicio})
                         const newCita = new Citas({ 
                             fecha: date,
                             hora: `${req.body.hora}:00`, 
-                            estilista: req.body.estilista, 
+                            estilista: req.body.estilista,
                             cliente: req.body.cliente,
                             telefono: req.body.telefono,
-                            servicio: req.body.servicio,
+                            servicio: servicio.servicio,
+                            idservicio: servicio._id,
+                            precio: servicio.precio,
+                            duracion: servicio.rango,
+                            historial: true,
                             rowspan: fila,
                             confirmacion: false
                         })
@@ -178,13 +190,18 @@ citasCtrl.createPorHora = async (req, res) => {
                     if(!citaC){
                         const citaD = await Citas.findOne({fecha: date, hora: `${two}:30`, estilista: req.body.estilista})
                         if(!citaD){ 
+                            const servicio = await Servicio.findOne({ _id : req.body.servicio})
                             const newCita = new Citas({ 
                                 fecha: date,
                                 hora: `${req.body.hora}:00`, 
-                                estilista: req.body.estilista, 
+                                estilista: req.body.estilista,
                                 cliente: req.body.cliente,
                                 telefono: req.body.telefono,
-                                servicio: req.body.servicio,
+                                servicio: servicio.servicio,
+                                idservicio: servicio._id,
+                                precio: servicio.precio,
+                                duracion: servicio.rango,
+                                historial: true,
                                 rowspan: fila,
                                 confirmacion: false
                             })
@@ -234,13 +251,18 @@ citasCtrl.createPorHora = async (req, res) => {
                         if(!citaE){
                             const citaF = await Citas.findOne({fecha: date, hora: `${three}:30`, estilista: req.body.estilista})
                             if(!citaF){
+                                const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                 const newCita = new Citas({ 
                                     fecha: date,
                                     hora: `${req.body.hora}:00`, 
-                                    estilista: req.body.estilista, 
+                                    estilista: req.body.estilista,
                                     cliente: req.body.cliente,
                                     telefono: req.body.telefono,
-                                    servicio: req.body.servicio,
+                                    servicio: servicio.servicio,
+                                    idservicio: servicio._id,
+                                    precio: servicio.precio,
+                                    duracion: servicio.rango,
+                                    historial: true,
                                     rowspan: fila,
                                     confirmacion: false
                                 })
@@ -304,13 +326,18 @@ citasCtrl.createPorHora = async (req, res) => {
                                     if(!citaG){
                                         const citaH = await Citas.findOne({fecha: date, hora: `${four}:30`, estilista: req.body.estilista})
                                         if(!citaH){
+                                            const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                             const newCita = new Citas({ 
                                                 fecha: date,
                                                 hora: `${req.body.hora}:00`, 
-                                                estilista: req.body.estilista, 
+                                                estilista: req.body.estilista,
                                                 cliente: req.body.cliente,
                                                 telefono: req.body.telefono,
-                                                servicio: req.body.servicio,
+                                                servicio: servicio.servicio,
+                                                idservicio: servicio._id,
+                                                precio: servicio.precio,
+                                                duracion: servicio.rango,
+                                                historial: true,
                                                 rowspan: fila,
                                                 confirmacion: false
                                         })
@@ -389,13 +416,18 @@ citasCtrl.createPorHora = async (req, res) => {
                                             if(!citaI){
                                                 const citaJ = await Citas.findOne({fecha: date, hora: `${five}:30`, estilista: req.body.estilista})
                                                 if(!citaJ){
+                                                    const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                             const newCita = new Citas({ 
                                                 fecha: date,
                                                 hora: `${req.body.hora}:00`, 
-                                                estilista: req.body.estilista, 
+                                                estilista: req.body.estilista,
                                                 cliente: req.body.cliente,
                                                 telefono: req.body.telefono,
-                                                servicio: req.body.servicio,
+                                                servicio: servicio.servicio,
+                                                idservicio: servicio._id,
+                                                precio: servicio.precio,
+                                                duracion: servicio.rango,
+                                                historial: true,
                                                 rowspan: fila,
                                                 confirmacion: false
                                             })
@@ -470,13 +502,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
     if(duracion === 30){
         const cita = await Citas.findOne({fecha: date, hora: `${req.body.hora}:30`, estilista: req.body.estilista})
         if(!cita){
+            const servicio = await Servicio.findOne({ _id : req.body.servicio})
             const newCita = new Citas({ 
                 fecha: date,
                 hora: `${req.body.hora}:30`, 
-                estilista: req.body.estilista, 
+                estilista: req.body.estilista,
                 cliente: req.body.cliente,
                 telefono: req.body.telefono,
-                servicio: req.body.servicio,
+                servicio: servicio.servicio,
+                idservicio: servicio._id,
+                precio: servicio.precio,
+                duracion: servicio.rango,
+                historial: true,
                 rowspan: 1,
                 confirmacion: false
             })
@@ -502,13 +539,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
         if(!cita){
             const citaB = await Citas.findOne({fecha: date, hora: `${two}:00`, estilista: req.body.estilista})
             if(!citaB){
+                const servicio = await Servicio.findOne({ _id : req.body.servicio})
                         const newCita = new Citas({ 
                             fecha: date,
                             hora: `${req.body.hora}:30`, 
-                            estilista: req.body.estilista, 
+                            estilista: req.body.estilista,
                             cliente: req.body.cliente,
                             telefono: req.body.telefono,
-                            servicio: req.body.servicio,
+                            servicio: servicio.servicio,
+                            idservicio: servicio._id,
+                            precio: servicio.precio,
+                            duracion: servicio.rango,
+                            historial: true,
                             rowspan: fila,
                             confirmacion: false
                         })
@@ -549,13 +591,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
                     if(!citaC){
                         const citaD = await Citas.findOne({fecha: date, hora: `${three}:00`, estilista: req.body.estilista})
                         if(!citaD){ 
+                            const servicio = await Servicio.findOne({ _id : req.body.servicio})
                             const newCita = new Citas({ 
                                 fecha: date,
                                 hora: `${req.body.hora}:30`, 
-                                estilista: req.body.estilista, 
-                                cliente: req.body.cliente,
-                                telefono: req.body.telefono,
-                                servicio: req.body.servicio,
+                                estilista: req.body.estilista,
+                                    cliente: req.body.cliente,
+                                    telefono: req.body.telefono,
+                                    servicio: servicio.servicio,
+                                    idservicio: servicio._id,
+                                    precio: servicio.precio,
+                                    duracion: servicio.rango,
+                                    historial: true,
                                 rowspan: fila,
                                 confirmacion: false
                             })
@@ -606,13 +653,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
                         if(!citaE){
                             const citaF = await Citas.findOne({fecha: date, hora: `${four}:00`, estilista: req.body.estilista})
                             if(!citaF){
+                                const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                 const newCita = new Citas({ 
                                     fecha: date,
                                     hora: `${req.body.hora}:30`, 
-                                    estilista: req.body.estilista, 
+                                    estilista: req.body.estilista,
                                     cliente: req.body.cliente,
                                     telefono: req.body.telefono,
-                                    servicio: req.body.servicio,
+                                    servicio: servicio.servicio,
+                                    idservicio: servicio._id,
+                                    precio: servicio.precio,
+                                    duracion: servicio.rango,
+                                    historial: true,
                                     rowspan: fila,
                                     confirmacion: false
                                 })
@@ -677,13 +729,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
                                     if(!citaG){
                                         const citaH = await Citas.findOne({fecha: date, hora: `${five}:00`, estilista: req.body.estilista})
                                         if(!citaH){
+                                            const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                             const newCita = new Citas({ 
                                                 fecha: date,
                                                 hora: `${req.body.hora}:30`, 
-                                                estilista: req.body.estilista, 
+                                                estilista: req.body.estilista,
                                                 cliente: req.body.cliente,
                                                 telefono: req.body.telefono,
-                                                servicio: req.body.servicio,
+                                                servicio: servicio.servicio,
+                                                idservicio: servicio._id,
+                                                precio: servicio.precio,
+                                                duracion: servicio.rango,
+                                                historial: true,
                                                 rowspan: fila,
                                                 confirmacion: false
                                         })
@@ -763,13 +820,18 @@ citasCtrl.createPorMediaHora = async (req, res) => {
                                             if(!citaI){
                                                 const citaJ = await Citas.findOne({fecha: date, hora: `${six}:00`, estilista: req.body.estilista})
                                                 if(!citaJ){
+                                                    const servicio = await Servicio.findOne({ _id : req.body.servicio})
                                             const newCita = new Citas({ 
                                                 fecha: date,
                                                 hora: `${req.body.hora}:30`, 
-                                                estilista: req.body.estilista, 
+                                                estilista: req.body.estilista,
                                                 cliente: req.body.cliente,
                                                 telefono: req.body.telefono,
-                                                servicio: req.body.servicio,
+                                                servicio: servicio.servicio,
+                                                idservicio: servicio._id,
+                                                precio: servicio.precio,
+                                                duracion: servicio.rango,
+                                                historial: true,
                                                 rowspan: fila,
                                                 confirmacion: false
                                             })

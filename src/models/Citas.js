@@ -11,8 +11,12 @@ const Citas = new Schema({
     rowspan: { type: String },
     duracion: { type: String },
     servicio: { type: String },
+    idservicio: { type: String},
     ocupado: { type: Boolean },
-    confirmacion: { type: Boolean}
+    confirmacion: { type: Boolean},
+    historial: { type: Boolean},
+    precio: { type: Number }
+
 })
 
 module.exports = model('Citas', Citas)

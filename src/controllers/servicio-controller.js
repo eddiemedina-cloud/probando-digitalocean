@@ -14,18 +14,19 @@ servicioCtrl.getOneServicio = async (req, res) => {
 }
 
 servicioCtrl.createServicio = async ( req, res)  => {
-    const { servicio, duracion } = req.body
+    console.log(req.body)
+    const { servicio, duracion, rango, precio } = req.body
     const newServicio = new Servicio({
-        servicio, duracion
+        servicio, duracion, rango, precio
     })
     await newServicio.save()
     res.json({ message: 200 })
 }
 
 servicioCtrl.updateServicio = async ( req, res ) => {
-    const { servicio, duracion } = req.body
+    const { servicio, duracion, rango, precio } = req.body
     await Servicio.findOneAndUpdate({ _id : req.params.id} , {
-        servicio, duracion
+        servicio, duracion, rango, precio
     })
     res.json({ message: 200 })
 } 

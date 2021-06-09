@@ -10,12 +10,13 @@ router.post('/subscription', async (req, res) => {
     const subscripcion = req.body.register
 
     const admin = req.body.admin
+ 
 
     if(admin){
         const subs = await Notificaciones.findOne({ administrador : admin })
-        const administrador = await Administrador.findOne({ _id: admin })
+        
         const playload = JSON.stringify({
-            title: `Bienvenido ${administrador.nombre}`,        
+            title: `Bienvenido`,        
         })
         
         try {
