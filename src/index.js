@@ -21,6 +21,7 @@ app.use(express.json())
 //routes
 app.use('/api/v1/administrador', require('./routes/administrador'))
 app.use('/api/v1/clientes', require('./routes/clientes'))
+app.use('/api/v1/clientas', require('./routes/clientas'))
 app.use('/api/v1/citas', require('./routes/citas'))
 app.use('/api/v1/canjeables', require('./routes/canjeables'))
 app.use('/api/v1/descuentos', require('./routes/descuentos'))
