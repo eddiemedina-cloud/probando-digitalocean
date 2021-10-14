@@ -15,7 +15,9 @@ descuentosCtrl.getOneProducto = async ( req, res) => {
 }
 
 descuentosCtrl.createProducto = async (req, res) => {
-    const { nombre, descripcion, categoria, precio, preciodescuento, descuento, picture } = req.body
+    const { nombre, descripcion, categoria, precio, descuento, picture } = req.body
+    let preciodescuento = parseFloat(precio) - (parseFloat(precio) * parseInt(descuento) / 100)
+    console.log(preciodescuento)
     const newDescuento = new Descuento({
         nombre, descripcion, categoria, precio, preciodescuento, descuento, picture
     })
@@ -26,7 +28,8 @@ descuentosCtrl.createProducto = async (req, res) => {
 }
 
 descuentosCtrl.updateProducto = async (req, res) => {
-    const { nombre, descripcion, categoria, precio, preciodescuento, descuento, picture } = req.body
+    const { nombre, descripcion, categoria, precio, descuento, picture } = req.body
+    let preciodescuento = parseFloat(precio) - (parseFloat(precio) * parseInt(descuento) / 100)
     if(!picture){
         await Descuento.findOneAndUpdate({_id: req.params.id}, {
             nombre, descripcion, categoria, precio, preciodescuento, descuento
